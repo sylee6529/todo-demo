@@ -9,6 +9,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
+import com.example.todoproject.vo.CreateTodoVO;
+import com.example.todoproject.vo.UpdateTodoVO;
 
 @Entity
 @Table(name = "todos")
@@ -43,4 +46,10 @@ public class Todo {
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+    
+    public void update(UpdateTodoVO vo) {
+        Optional.ofNullable(vo.getTitle()).ifPresent(t -> this.title = t);
+        Optional.ofNullable(vo.getContent()).ifPresent(c -> this.content = c);
+        Optional.ofNullable(vo.getIsDone()).ifPresent(d -> this.isDone = d);
+    }
 }
