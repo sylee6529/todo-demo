@@ -1,5 +1,7 @@
-package com.example.todoproject.entity;
+package com.example.todoproject.todo.entity;
 
+import com.example.todoproject.user.entity.User;
+import com.example.todoproject.todo.dto.UpdateTodoRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,8 +12,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-import com.example.todoproject.vo.CreateTodoVO;
-import com.example.todoproject.vo.UpdateTodoVO;
 
 @Entity
 @Table(name = "todos")
@@ -47,9 +47,9 @@ public class Todo {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
     
-    public void update(UpdateTodoVO vo) {
-        Optional.ofNullable(vo.getTitle()).ifPresent(t -> this.title = t);
-        Optional.ofNullable(vo.getContent()).ifPresent(c -> this.content = c);
-        Optional.ofNullable(vo.getIsDone()).ifPresent(d -> this.isDone = d);
+    public void update(UpdateTodoRequest request) {
+        Optional.ofNullable(request.title()).ifPresent(t -> this.title = t);
+        Optional.ofNullable(request.content()).ifPresent(c -> this.content = c);
+        Optional.ofNullable(request.isDone()).ifPresent(d -> this.isDone = d);
     }
 }

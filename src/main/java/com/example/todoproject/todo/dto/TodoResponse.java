@@ -1,6 +1,6 @@
-package com.example.todoproject.dto;
+package com.example.todoproject.todo.dto;
 
-import com.example.todoproject.entity.Todo;
+import com.example.todoproject.todo.entity.Todo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
